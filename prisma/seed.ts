@@ -6,7 +6,7 @@ type Data = {
 };
 
 async function main() {
-  //   await prisma.table.deleteMany();
+  await prisma.table.deleteMany();
   await prisma.review.deleteMany();
   await prisma.item.deleteMany();
   await prisma.restaurant.deleteMany();
@@ -1300,22 +1300,22 @@ async function main() {
       ],
     });
 
-  //   await prisma.table.createMany({
-  //     data: [
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 4,
-  //       },
-  //       {
-  //         restaurant_id: vivaanId,
-  //         seats: 2,
-  //       },
-  //     ],
-  //   });
+    await prisma.table.createMany({
+      data: [
+        {
+          restaurant_id: vivaanId,
+          seats: 4,
+        },
+        {
+          restaurant_id: vivaanId,
+          seats: 4,
+        },
+        {
+          restaurant_id: vivaanId,
+          seats: 2,
+        },
+      ],
+    });
 
 }
 main()

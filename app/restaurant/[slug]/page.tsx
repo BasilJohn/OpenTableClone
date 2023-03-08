@@ -15,7 +15,9 @@ interface Restaurant {
     images: string[];
     description: string;
     slug: string;
-    reviews: Review[]
+    reviews: Review[],
+    open_time: string,
+    close_time: string,
 }
 const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
     const restaurant = await prisma.restaurant.findUnique({
@@ -28,7 +30,9 @@ const fetchRestaurant = async (slug: string): Promise<Restaurant> => {
             images: true,
             description: true,
             slug: true,
-            reviews: true
+            reviews: true,
+            open_time: true,
+            close_time: true,
         }
     })
 
@@ -48,13 +52,16 @@ export default async function RestaurantDetails({ params }: { params: { slug: st
             <div className='bg-white w-[70%] rounded p-3 shadow'>
                 <RestaurantNavBar slug={restaurant.slug} />
                 <Title name={restaurant.name} />
-                <Rating reviews={restaurant.reviews}/>
+                <Rating reviews={restaurant.reviews} />
                 <Description description={restaurant.description} />
                 <Images images={restaurant.images} />
-                <Reviews reviews={restaurant.reviews}/>
+                <Reviews reviews={restaurant.reviews} />
             </div>
             <div className='w-[27%] relative text-reg'>
-                <ReservationCard />
+                <ReservationCard
+                    slug={restaurant.slug}
+                    openTime={restaurant.open_time}
+                    closeTime={restaurant.close_time} />
             </div>
         </>
 

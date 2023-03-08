@@ -2,6 +2,7 @@ import { NextResponse, NextRequest } from 'next/server';
 import * as jose from 'jose';
 
 export async function middleware(req: NextRequest, res: NextResponse) {
+    console.log("BAS");
 
     const bearerToken = req.headers.get("Authorization") as string;
     
